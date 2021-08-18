@@ -25,6 +25,8 @@ class SeriesFormRequest extends FormRequest
     {
         return [
             'nomeSerie' => 'required|min:3',
+            'numeroTemporadas' => 'required',
+            'numeroEpisodios' => 'required',
         ];
     }
 
@@ -32,6 +34,8 @@ class SeriesFormRequest extends FormRequest
     {
         return [
             'nomeSerie.required' => 'O campo ":attribute" é obrigatório.',
+            'numeroTemporadas.required' => 'O campo ":attribute" é obrigatório.',
+            'numeroEpisodios.required' => 'O campo ":attribute" é obrigatório.',
             'nomeSerie.min' => 'No campo ":attribute", digitar no mínimo, 3 caracteres.',
         ];
     }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Episodio;
 use App\Http\Requests\SeriesFormRequest;
 use App\Serie;
+use App\Services\SerieService;
+use App\Temporada;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
@@ -21,30 +24,27 @@ class SeriesController extends Controller
         return view('series.create');
     }
 
-    public function store(SeriesFormRequest $request)
+    public function store(SeriesFormRequest $request, SerieService $criadorDeSerie)
     {
-        $serie = Serie::create(['nome' => $request->nomeSerie]);
-        $qtdTemporadas = $request->numeroTemporadas;
-        $qtdEpisodio = $request->numeroEpisodios;
+        $seie = $criadorDeSerie->criarSerie($request->nomeSerie, $request->numeroTemporadas, $request->numeroEpisodios);
 
-        for ($i = 1; $i <= $qtdTemporadas; $i++){
-            $temporada = $serie->temporadas()->create(['numero' => $i]);
-
-            for ($j = 1; $j <= $qtdEpisodio; $j++){
-                $temporada->episodios()->create(['numero' => $j]);
-            }
-        }
-
-        $request->session()->flash('mensagem', "A série {$serie->nome} e suas temporadas e episódios foram criados com sucesso!");
+        $request->session()->flash('mensagem', "A série {$request->nomeSerie} e suas temporadas e episódios foram criados com sucesso!");
         return redirect()->route('serie.index');
     }
 
-    public function destroy(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        Serie::destroy($id);
+        $novoNomeSerie = $request->nomeSerie;
+        $serie = Serie::find($id);
+        $serie->nome = $novoNomeSerie;
+        $serie->save();
+    }
 
-        $request->session()->flash('mensagem', "A série foi deletada com sucesso!");
+    public function destroy(Request $request, SerieService $removedorDeSerie, int $id)
+    {
+        $nomeSerie = $removedorDeSerie->removerSerie($id);
+
+        $request->session()->flash('mensagem', "A série: {$nomeSerie}, foi deletada com sucesso!");
         return redirect()->route('serie.index');
-
     }
 }

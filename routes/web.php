@@ -13,3 +13,4 @@ Route::delete('series/destroy/{id}', 'SeriesController@destroy')->name('serie.de
 
 Route::get('temporadas/{id}', 'TemporadasController@index')->name('temporada.index');
 Route::get('temporadas/episodios/{id}', 'EpisodiosController@index')->name('temporada.episodios');
+Route::post('temporadas/episodios/assistir/{id}', 'EpisodiosController@assistir')->name('temporada.episodios.assistir');

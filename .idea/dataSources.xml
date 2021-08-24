@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="CursoAluraLaravel" uuid="3345e41f-44da-4d1c-b18c-70de7452b56f">
+    <data-source source="LOCAL" name="Banco_series" uuid="7b3b9dc6-7ebd-494d-aee9-d3e3d298970f">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\xampp\htdocs\projetos\estudos\Alura\controle-series\database\database.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\xampp\htdocs\estudos\controle-series\database\database.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

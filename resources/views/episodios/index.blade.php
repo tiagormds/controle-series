@@ -4,7 +4,7 @@
 @section('title_menu', 'Lista de Episódio(s)')
 
 @section('content')
-    <form action="">
+    <form action="{{ route('temporada.episodios.assistir', $temporadaId) }}" method="post">
         @csrf
         <table class="table table-bordered table-hover table-striped">
             <thead>
@@ -20,7 +20,7 @@
                         <a>Episódio {{$episodio->numero}}</a>
                     </td>
                     <td>
-                        <input type="checkbox" name="assistido" value="true">
+                        <input type="checkbox" name="episodios[]" value="{{ $episodio->id }}">
                     </td>
                 </tr>
             @endforeach
